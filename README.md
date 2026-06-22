@@ -1,30 +1,29 @@
-# wp-link-redirect
+# WP Link Redirect Track
 
-A lightweight, high‑performance WordPress plugin for creating **trackable redirect links** with:
+[![Version](https://img.shields.io/badge/version-0.0.3-blue.svg)](./CHANGELOG.md)
+[![License](https://img.shields.io/badge/license-MIT-green.svg)](#license)
+[![WordPress](https://img.shields.io/badge/wordpress-compatible-brightgreen.svg)](https://wordpress.org)
+[![PHP](https://img.shields.io/badge/php-7.4%2B-777BB4.svg)](https://www.php.net/)
+[![Maintained](https://img.shields.io/badge/maintained-yes-success.svg)](https://github.com/my-code-library)
 
-- GA4 event tracking  
-- Server‑side click logging  
-- Clean `/go/{slug}` redirect endpoints  
-- Custom post type for managing redirects  
-- Zero theme edits required  
-- Fully compatible with caching, SEO plugins, and shared hosting environments  
+A lightweight, high‑performance WordPress plugin for creating **trackable redirect links** that fire **GA4 events** and log clicks server‑side before redirecting users.
 
-Built for artists, creators, and marketers who need **accurate outbound click tracking** without relying on third‑party link shorteners.
+Perfect for creators, marketers, musicians, and anyone who needs **accurate outbound click tracking** without relying on third‑party link shorteners.
 
 ---
 
 ## ✨ Features
 
 ### 🔗 Custom Redirect Post Type
-Create and manage redirects directly in the WordPress admin:
+Manage redirects directly in the WordPress admin:
 
-- Title = internal name  
-- Slug = redirect URL (`/go/my-link`)  
-- Destination URL  
-- GA4 event label  
+- Title (internal name)
+- Slug → becomes `/go/{slug}`
+- Destination URL
+- GA4 event label
 
 ### 📈 GA4 Event Tracking
-Each redirect fires a GA4 event:
+Each redirect fires:
 
 ```
 event: outbound_click
@@ -36,9 +35,9 @@ destination: {your target URL}
 ### 🗃 Server‑Side Click Logging
 Clicks are stored in `wp_postmeta`:
 
-- No JavaScript required  
-- Works even if GA4 is blocked  
-- Click count displayed in the admin list table  
+- Works even if GA4 is blocked
+- No JavaScript required
+- Click count displayed in the admin list
 
 ### 🚀 Fast Redirect Endpoint
 Redirects are served at:
@@ -56,12 +55,12 @@ Example:
 ### 🧩 Zero Theme Edits
 No templates, no shortcodes, no conflicts.
 
-### 🛡 Compatible With:
-- WordPress caching  
-- Cloudflare  
-- Bluehost shared hosting  
-- SEO plugins (Yoast, RankMath)  
-- Security plugins  
+### 🛡 Fully Compatible With
+- WordPress caching
+- Cloudflare
+- Shared hosting (Bluehost, SiteGround, etc.)
+- SEO plugins (Yoast, RankMath)
+- Security plugins
 
 ---
 
@@ -70,18 +69,18 @@ No templates, no shortcodes, no conflicts.
 1. Create a folder:
 
 ```
-/wp-content/plugins/picklejuice-redirects/
+/wp-content/plugins/wp-link-redirect-track/
 ```
 
 2. Add the plugin file:
 
 ```
-picklejuice-redirects.php
+wp-link-redirect-track.php
 ```
 
 3. Paste the plugin code into the file.
 
-4. Activate **Pickle Juice Redirect Manager** in WordPress → Plugins.
+4. Activate **WP Link Redirect Track** in WordPress → Plugins.
 
 5. Go to **Redirects → Add New**.
 
@@ -91,7 +90,7 @@ picklejuice-redirects.php
 
 ### 1. Create a Redirect
 - Go to **Redirects → Add New**
-- Set the title (internal only)
+- Set the title
 - Set the slug (auto‑generated or custom)
 - Enter the destination URL
 - Enter the GA4 event label
@@ -112,7 +111,7 @@ https://yourdomain.com/go/{slug}
 
 ## 📊 GA4 Setup
 
-If you want to mark redirect clicks as conversions:
+To mark redirect clicks as conversions:
 
 1. GA4 → Admin → Events  
 2. Find `outbound_click`  
@@ -122,29 +121,29 @@ If you want to mark redirect clicks as conversions:
 
 ## 🧱 Plugin Architecture
 
-- **Custom Post Type:** `pj_redirect`
+- **Custom Post Type:** `wplr_redirect`
 - **Rewrite Endpoint:** `/go/{slug}`
-- **Click Logging:** `_pj_clicks`
-- **Meta Fields:** `_pj_url`, `_pj_label`
+- **Click Logging:** `_wplr_clicks`
+- **Meta Fields:** `_wplr_url`, `_wplr_label`
 - **Admin Columns:** Click count
 
 ---
 
-## 📝 Changelog
+## 📜 Changelog
 
-### v1.0
-- Initial release
-- Redirect CPT
-- GA4 event firing
-- Server‑side click logging
-- Admin UI
-- `/go/{slug}` routing
+See [`CHANGELOG.md`](./CHANGELOG.md)
 
 ---
 
-## 🧑‍💻 Author
+## 📝 License
+
+MIT License — free to modify, distribute, and use in commercial projects.
+
+---
+
+## 👤 Author
 
 **@my-code-library**  
-Clean, minimal, creator‑focused WordPress tools.
+Clean, modular, creator‑focused WordPress tools.
 
 ```
