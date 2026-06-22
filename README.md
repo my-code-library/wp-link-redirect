@@ -145,5 +145,3 @@ MIT License — free to modify, distribute, and use in commercial projects.
 
 **@my-code-library**  
 Clean, modular, creator‑focused WordPress tools.
-
-```
