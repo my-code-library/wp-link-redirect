@@ -72,4 +72,3 @@ Updated plugin header and standardized naming.
 == License ==
 
 MIT License. Free for personal and commercial use.
-
