@@ -2,7 +2,7 @@
 /**
  * Plugin Name: WP Link Redirect Track
  * Description: Creates trackable redirect pages that fire GA4 events before redirecting.
- * Version: 0.0.4
+ * Version: 0.0.3
  * Author: @my-code-library
  *
  * MIT License
@@ -104,3 +104,45 @@ function wplr_redirect_template() {
     exit;
 }
 add_action('template_redirect', 'wplr_redirect_template');
+
+/**
+ * Send GA4 Measurement Protocol server-side event.
+ *
+ * @param string $label
+ * @param string $destination
+ * @param string $slug
+ */
+function wplr_send_ga4_server_event($label, $destination, $slug) {
+
+    // TODO: Move these to plugin settings later.
+    $measurement_id = 'G-XXXXXXXXXX';
+    $api_secret     = 'YOUR_API_SECRET_HERE';
+
+    if (!$measurement_id || !$api_secret) {
+        return; // Fail silently if not configured.
+    }
+
+    $endpoint = "https://www.google-analytics.com/mp/collect?measurement_id={$measurement_id}&api_secret={$api_secret}";
+
+    $payload = array(
+        'client_id' => uniqid(), // Anonymous unique ID
+        'events' => array(
+            array(
+                'name' => 'outbound_click',
+                'params' => array(
+                    'event_label'   => $label,
+                    'destination'   => $destination,
+                    'redirect_slug' => $slug,
+                    'timestamp'     => time(),
+                )
+            )
+        )
+    );
+
+    wp_remote_post($endpoint, array(
+        'method'      => 'POST',
+        'body'        => wp_json_encode($payload),
+        'headers'     => array('Content-Type' => 'application/json'),
+        'timeout'     => 3,
+    ));
+}
